@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Image in js</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <form action="post" id="imgForm" class="img-form">
+        <label for="fileInput">Add an image:</label><br>
+        <input type="file" name="fileInput" id="fileInput" accept=".jpg, .jpeg, .png, .bmp">
+      </form><br>
+      
+      <div class="img-uploader-panel card">
+        <p class="img-uploader-header">Image Preview</p>
+        <div id="imgPreview" class="img-preview">
+          <p id="statusMessage" class="status-message"></p>
+        </div>
+        <div class="uploader-btn-panel">
+          <button id="anticlockwiseBtn" class="anticlockwise-btn rotate-btn">&#8634;</button>
+          <button id="clockwiseBtn" class="clockwise-btn rotate-btn">&#8635;</button>
+          <button id="uploadBtn" class="upload-btn">Upload</button>
+        </div>
+      </div>
+      
+      <canvas id="canvas" class="canvas"></canvas>
+
+      <script src="rotate.js"></script>
+    
+</body>
+</html>

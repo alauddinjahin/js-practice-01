@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas HTML</title>
+    </head>  
+    <body onload="drawCanvas()">  
+        <div>  
+            <canvas id="myCanvas" width="700" height="600">  
+                <p>Your browser doesn't support canvas.</p>  
+            </canvas>  
+        </div>  
+
+
+        <script type="application/javascript" defer>  
+            var surface;  
+            var image;  
+            var angle = 90; 
+            
+            
+            
+            function drawCanvas()  
+            {  
+                // Get our Canvas element  
+                surface = document.getElementById("myCanvas");  
+                
+                if (surface.getContext)  
+                {  
+                    // If Canvas is supported, load the image  
+                    image = new Image(surface.width, surface.height);  
+                    image.onload = loadingComplete;  
+                    image.src = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png";  
+                }  
+            }  
+       
+            function loadingComplete(e)  
+            {  
+                // When the image has loaded begin the loop  
+                setInterval(loop, 25); 
+                // loop() 
+            }  
+       
+            function loop()  
+            {  
+                // Each loop we rotate the image  
+       
+                var surfaceContext = surface.getContext('2d');  
+       
+                // Clear the canvas to White  
+                surfaceContext.fillStyle = "#000";  
+                surfaceContext.fillRect(0, 0, surface.width, surface.height);  
+       
+                // Save the current context  
+                surfaceContext.save();  
+                // Translate to the center point of our image  
+                // surfaceContext.translate(image.width * 0.5, image.height * 0.5);  
+                // Perform the rotation  
+                // surfaceContext.rotate(DegToRad(angle));  
+                // Translate back to the top left of our image  
+                // surfaceContext.translate(-image.width * 0.5, -image.height * 0.5);  
+                // Finally we draw the image  
+                surfaceContext.drawImage(image, 0, 0, surface.width/2, surface.height);  
+                surfaceContext.rotate(angle*Math.PI/180); 
+                // surfaceContext.rotate(DegToRad(angle));  
+
+                surfaceContext.beginPath();
+                surfaceContext.lineWidth = 5;
+                surfaceContext.strokeStyle = '#ffff';
+                surfaceContext.strokeRect(surface.width/2, 0, surface.width/2, surface.height);
+                surfaceContext.drawImage(image, surface.width/2, 0, surface.width/2, surface.height);  
+
+                // And restore the context ready for the next loop  
+                surfaceContext.restore();  
+       
+                angle++;  
+            }  
+       
+            function DegToRad(d)  
+            {  
+                // Converts degrees to radians  
+                return d * 0.01745;  
+            }  
+
+
+            function resize(){ 
+                w = canvas.width = innerWidth; 
+                h = canvas.height = innerHeight;
+            }
+            window.addEventListener("resize",resize);
+
+        </script>  
+    </body>  
+    </html> 
+
